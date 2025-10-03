@@ -33,4 +33,3 @@ techBtns.forEach(btn => {
     const tech = btn.getAttribute('data-tech');
     techDescInner.innerHTML = techDesc[tech];
   });
-});
