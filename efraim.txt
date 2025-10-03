@@ -1,5 +1,4 @@
 // SPA-style page switch
-// SPA-style page switch 
 const navItems = document.querySelectorAll('#navMenu li');
 const pages = document.querySelectorAll('.page');
 
@@ -36,3 +35,4 @@ techBtns.forEach(btn => {
     techDescInner.innerHTML = techDesc[tech];
   });
 });
+
