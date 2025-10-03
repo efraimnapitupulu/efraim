@@ -1,17 +1,28 @@
-// SPA-style page switch
+// SPA-style page switch 
 const navItems = document.querySelectorAll('#navMenu li');
 const pages = document.querySelectorAll('.page');
 
 navItems.forEach(li => {
   li.addEventListener('click', () => {
+    // reset semua menu dan halaman
     navItems.forEach(x => x.classList.remove('active'));
     pages.forEach(p => p.classList.remove('active'));
-    li.classList.add('active');
-    document.querySelector(`.page-${li.dataset.menu}`).classList.add('active');
 
-    // Reset Technology desc on tab switch
+    // aktifkan menu yang diklik
+    li.classList.add('active');
+
+    // cari halaman sesuai data-menu
+    const targetPage = document.querySelector(`.page-${li.dataset.menu}`);
+    if (targetPage) {
+      targetPage.classList.add('active');
+    } else {
+      console.error("Section tidak ditemukan untuk:", li.dataset.menu);
+    }
+
+    // reset Technology desc kalau bukan tab technology
     if (li.dataset.menu !== "technology") {
-      document.getElementById('techDescInner').innerHTML = "";
+      const techDescInner = document.getElementById('techDescInner');
+      if (techDescInner) techDescInner.innerHTML = "";
       document.querySelectorAll('.tech-btn').forEach(b => b.classList.remove('active'));
     }
   });
@@ -19,20 +30,24 @@ navItems.forEach(li => {
 
 // Interactive technology explanation
 const techDesc = {
-  html: `HTML5 adalah bahasa markup utama untuk membangun struktur dasar website...`,
-  css: `CSS3 digunakan untuk memperindah tampilan website...`,
-  js: `JavaScript adalah bahasa pemrograman agar website menjadi interaktif...`
+  html: `HTML5 adalah bahasa markup utama untuk membangun struktur dasar website.`,
+  css: `CSS3 digunakan untuk memperindah tampilan website.`,
+  js: `JavaScript adalah bahasa pemrograman agar website menjadi interaktif.`
 };
 
 const techBtns = document.querySelectorAll('.tech-btn');
 const techDescInner = document.getElementById('techDescInner');
 
-techBtns.forEach(btn => {
-  btn.addEventListener('click', function() {
-    techBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const tech = btn.getAttribute('data-tech');
-    techDescInner.innerHTML = techDesc[tech];
+if (techBtns && techDescInner) {
+  techBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      techBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tech = btn.getAttribute('data-tech');
+      techDescInner.innerHTML = techDesc[tech];
+    });
   });
-});
+}
+
+
 
