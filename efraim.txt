@@ -1,4 +1,5 @@
 // SPA-style page switch
+// SPA-style page switch 
 const navItems = document.querySelectorAll('#navMenu li');
 const pages = document.querySelectorAll('.page');
 
@@ -10,26 +11,28 @@ navItems.forEach(li => {
     document.querySelector(`.page-${li.dataset.menu}`).classList.add('active');
 
     // Reset Technology desc on tab switch
-    if(li.dataset.menu !== "technology") {
+    if (li.dataset.menu !== "technology") {
       document.getElementById('techDescInner').innerHTML = "";
-      document.querySelectorAll('.tech-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tech-btn').forEach(b => b.classList.remove('active'));
     }
   });
 });
 
 // Interactive technology explanation
 const techDesc = {
-  html: `HTML5 adalah bahasa markup utama untuk membangun struktur dasar website. HTML digunakan untuk membuat elemen dan kerangka halaman seperti teks, gambar, link, dan tabel.`,
-  css: `CSS3 digunakan untuk memperindah tampilan website dengan style, warna, animasi, dan layout modern agar website lebih menarik, responsif, dan konsisten.`,
-  js: `JavaScript adalah bahasa pemrograman agar website menjadi interaktif dan dinamis, seperti membuat animasi, validasi form, serta mengelola data pada halaman web.`
+  html: `HTML5 adalah bahasa markup utama untuk membangun struktur dasar website...`,
+  css: `CSS3 digunakan untuk memperindah tampilan website...`,
+  js: `JavaScript adalah bahasa pemrograman agar website menjadi interaktif...`
 };
+
 const techBtns = document.querySelectorAll('.tech-btn');
 const techDescInner = document.getElementById('techDescInner');
 
 techBtns.forEach(btn => {
   btn.addEventListener('click', function() {
-    techBtns.forEach(b=>b.classList.remove('active'));
+    techBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const tech = btn.getAttribute('data-tech');
     techDescInner.innerHTML = techDesc[tech];
   });
+});
